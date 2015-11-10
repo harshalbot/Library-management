@@ -1,3 +1,4 @@
+
 def add_book():
 	book_title = raw_input('Enter the book title: ')
 	book_author = raw_input('Enter the book author: ')
@@ -59,16 +60,16 @@ def allocate():
 	
 
 
-def deallocate():
-	deAlloc_issue_id = raw_input('Enter the issue id provided to you:')
+def de_allocate():
+	de_alloc_issue_id = raw_input('Enter the issue id provided to you:')
 	#check alloc_book_id with actual book id in database
-	if deAlloc_issue_id in issue_data:
+	if de_alloc_issue_id in issue_data:
 		if today_date == return_date in issue_data:
 			print ('Book received')
 			book_no += 1
 
 		elif:
-		 today_date < return_date:
+			today_date < return_date:
 			overdue_days = return_date - today_date
 			fine = 5*overdue_days
 			print "Your fine is Rs", fine
