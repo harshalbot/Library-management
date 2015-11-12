@@ -1,3 +1,49 @@
+import peewee
+
+db = SqliteDatabase('library.db')
+
+class book(Model):
+	title = CharField()
+	author = CharField()
+	publication = CharField()
+	pub_year = IntegerField()
+	isbn = CharField()
+	num_of_books = IntegerField()
+
+	class Meta:
+		database = db
+
+
+class member(Model):
+	user_id = CharField()
+	name = CharField()
+	phone_no = CharField()
+
+	class Meta:
+		database = db
+
+class issue_history(Model):
+	user_id = ForeignKeyField(member, related_name='pets')
+	isbn = ForeignKeyField(book, related_name='library')
+	issue_id = CharField()
+	issue_date = DateField()
+	return_date = DateField()
+
+	class Meta:
+		database = db
+
+
+def initialize_db():
+    db.connect()
+    try:
+        db.create_tables([book, member, issue_history])
+    except OperationalError:
+        # Table already exists. Do nothing
+        pass
+
+def deinit():
+    db.close()
+
 
 def add_book():
 	book_title = raw_input('Enter the book title: ')
@@ -7,6 +53,15 @@ def add_book():
 	book_isbn = raw_input('Enter the ISBN code of book: ')
 	book_no = #number of books having same ISBN
 	
+def save_book(comment, TableName=book):
+    comment_data = book(title=books_title,
+                        author=book_author,
+                        publication=book_publication,
+                        pub_year=book_pub_year,
+                        isbn=book_isbn,
+                        num_of_books=book_no)
+    comment_data.save()
+    replied_comments.append(comment.id)
 
 
 def remove_book():
@@ -48,7 +103,9 @@ def allocate():
 				issue_id = issue_date + user_id + return_date 
 				issue_data.save()
 				issue.append(sr_no)
-				print ('This is your issue id:' issue_id)
+				print ('This is your issue id:' issue_id) /
+				print ('Your return date is: 'return_date)
+
 		else:
 			print ('user_id entered does not exist')
 			#go to line line 35
