@@ -28,6 +28,7 @@ class issue_history(Model):
 	issue_id = CharField()
 	issue_date = DateField()
 	return_date = DateField()
+	current_status = TextField()
 
 	class Meta:
 		database = db
@@ -53,16 +54,29 @@ def add_book():
 	book_isbn = raw_input('Enter the ISBN code of book: ')
 	book_no = #number of books having same ISBN
 	
+def save_member(comment, TableName=member):
+    member_data = book(user_id=user_id,
+                        name=member_name,
+                        phone_no=member_phone_no)
+    book_data.save()
+    
+def save_issue(comment, TableName=issue):
+    issue_data = book(user_id=alloc_member_id,
+                        isbn=alloc_book_isbn,
+                        issue_id=issue_id,
+                        issue_date=issue_date,
+                        return_date=return_date,
+                        num_of_books=book_no)
+    issue_data.save()
+
 def save_book(comment, TableName=book):
-    comment_data = book(title=books_title,
+    book_data = book(title=books_title,
                         author=book_author,
                         publication=book_publication,
                         pub_year=book_pub_year,
                         isbn=book_isbn,
-                        num_of_books=book_no)
-    comment_data.save()
-    replied_comments.append(comment.id)
-
+                        current_status=current_status)
+    book_data.save()
 
 def remove_book():
 	check_isbn = raw_input('Enter the ISBN code of the book you want to remove: ')
@@ -103,6 +117,7 @@ def allocate():
 				issue_id = issue_date + user_id + return_date 
 				issue_data.save()
 				issue.append(sr_no)
+				current_status = 'issued'
 				print ('This is your issue id:' issue_id) /
 				print ('Your return date is: 'return_date)
 
@@ -124,12 +139,14 @@ def de_allocate():
 		if today_date == return_date in issue_data:
 			print ('Book received')
 			book_no += 1
+			current_status = 'returned'
 
 		elif:
 			today_date < return_date:
 			overdue_days = return_date - today_date
 			fine = 5*overdue_days
 			print "Your fine is Rs", fine
+			current_status = 'returned'
 
 		else:
 			book_no+= 1
