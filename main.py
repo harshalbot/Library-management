@@ -78,6 +78,8 @@ def save_book(comment, TableName=book):
                         current_status=current_status)
     book_data.save()
 
+  
+
 def remove_book():
 	check_isbn = raw_input('Enter the ISBN code of the book you want to remove: ')
     
