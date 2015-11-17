@@ -55,8 +55,8 @@ def add_book():																	#func to enter a new book
 	book_no = #number of books having same ISBN
 	
 
-def save_book(comment, TableName=book):											#func to actually save books to db
-    book_data = book(title=books_title,
+def add_book_to_db(comment, TableName=book):											#func to actually save books to db
+    book_data = book(title=book_title,
                         author=book_author,
                         publication=book_publication,
                         pub_year=book_pub_year,
@@ -71,7 +71,7 @@ def add_member():																#func to add a new member
 	member_phone_no = raw_input('Enter the phone number of the member: ')
 
 
-def save_member(comment, TableName=member):										#func to actually save a new member to db
+def add_member_to_db(comment, TableName=member):										#func to actually save a new member to db
     member_data = book(user_id=user_id,
                         name=member_name,
                         phone_no=member_phone_no)
@@ -109,7 +109,7 @@ def allocate():																	#func to allocate a book
 		#go to line 32
     
 
-def save_issue(comment, TableName=issue):										#func to save the new allocation data to db
+def save_allocate_to_db(comment, TableName=issue):										#func to save the new allocation data to db
     issue_data = book(user_id=alloc_member_id,
                         isbn=alloc_book_isbn,
                         issue_id=issue_id,
@@ -139,7 +139,7 @@ def de_allocate():																#func to de-allocate a book
 			book_no+= 1
 			print 'Thank you for choosing Python Library'
 
-def de_allocate_db():
+def update_de_allocate_to_db():
 	#function to add returned status to book
 
 
@@ -165,18 +165,12 @@ def remove_member():															#func to remove member from db
     print 'Member' rem_member_id 'has been removed.'
 	
 
-
-
-		
-	
 functions = {'a': add_book,														#dictionary for basic operations
-             'b': save_member,
-             'c': save_issue,
-             'd': save_book,
+             'b': add_member,
+             'c': allocate,
+             'd': de_allocate,
              'e': remove_book,
-             'f': add_member,
-             'g': allocate,
-             'h': de_allocate}
+             'f': remove_member}
 
 what_operation_user_wants = functions[value]
 
