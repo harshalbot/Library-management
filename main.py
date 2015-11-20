@@ -55,7 +55,7 @@ def add_book():																	#func to enter a new book
 	book_no = #number of books having same ISBN
 	
 
-def add_book_to_db(comment, TableName=book):											#func to actually save books to db
+def add_book_to_db(comment, TableName=book):									#func to actually save books to db
     book_data = book(title=book_title,
                         author=book_author,
                         publication=book_publication,
@@ -71,7 +71,7 @@ def add_member():																#func to add a new member
 	member_phone_no = raw_input('Enter the phone number of the member: ')
 
 
-def add_member_to_db(comment, TableName=member):										#func to actually save a new member to db
+def add_member_to_db(comment, TableName=member):								#func to actually save a new member to db
     member_data = book(user_id=user_id,
                         name=member_name,
                         phone_no=member_phone_no)
@@ -109,7 +109,7 @@ def allocate():																	#func to allocate a book
 		#go to line 32
     
 
-def save_allocate_to_db(comment, TableName=issue):										#func to save the new allocation data to db
+def save_allocate_to_db(comment, TableName=issue):								#func to save the new allocation data to db
     issue_data = book(user_id=alloc_member_id,
                         isbn=alloc_book_isbn,
                         issue_id=issue_id,
@@ -176,4 +176,15 @@ what_operation_user_wants = functions[value]
 
 
 def what_operation_user_wants(user_option):										#func to get user action
-	print 'Welcome to Python LIbrary System. \n To add a book, press a. \n To add a member, press b. \n To '
+	print 'Welcome to Python LIbrary System.'
+	print ' \n To add a book, press A.'
+	print ' \n To add a member, press B.'
+	print ' \n To allocate a book, press C.'
+	print ' \n To return a book, press D.'
+	print ' \n To remove a book from the collection, press E.'
+	print ' \n To remove a member from the book, press F.'
+	user_option = raw_input('Enter your choice now:')
+	user_option = user_option.lower()
+	return user_option
+
+functions[user_option]()
