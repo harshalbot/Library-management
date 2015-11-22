@@ -35,15 +35,15 @@ class issue_history(Model):														#Table for issue handling
 
 
 def initialize_db():															#function to connect to db
-    db.connect()
-    try:
-        db.create_tables([book, member, issue_history])
-    except OperationalError:
-        # Table already exists. Do nothing
-        pass
+	db.connect()
+	try:
+		db.create_tables([book, member, issue_history])
+	except OperationalError:
+		# Table already exists. Do nothing
+		pass
 
 def deinit():																	#func to close connection to db
-    db.close()
+	db.close()
 
 
 def add_book():																	#func to enter a new book
@@ -52,17 +52,17 @@ def add_book():																	#func to enter a new book
 	book_publication = raw_input('Enter the book publication: ')
 	book_pub_year = raw_input('Enter the year of publication of book: ')
 	book_isbn = raw_input('Enter the ISBN code of book: ')
-	book_no = #number of books having same ISBN
+	#book_no = number of books having same ISBN
 	
 
 def add_book_to_db(comment, TableName=book):									#func to actually save books to db
-    book_data = book(title=book_title,
-                        author=book_author,
-                        publication=book_publication,
-                        pub_year=book_pub_year,
-                        isbn=book_isbn,
-                        current_status=current_status)
-    book_data.save()
+	book_data = book(title=book_title,
+						author=book_author,
+						publication=book_publication,
+						pub_year=book_pub_year,
+						isbn=book_isbn,
+						current_status=current_status)
+	book_data.save()
 
 
 def add_member():																#func to add a new member
@@ -72,10 +72,10 @@ def add_member():																#func to add a new member
 
 
 def add_member_to_db(comment, TableName=member):								#func to actually save a new member to db
-    member_data = book(user_id=user_id,
-                        name=member_name,
-                        phone_no=member_phone_no)
-    book_data.save()
+	member_data = book(user_id=user_id,
+						name=member_name,
+						phone_no=member_phone_no)
+	book_data.save()
 
 
 def allocate():																	#func to allocate a book
@@ -97,8 +97,8 @@ def allocate():																	#func to allocate a book
 				issue_data.save()
 				issue.append(sr_no)
 				current_status = 'issued'
-				print ('This is your issue id:' issue_id) /
-				print ('Your return date is: 'return_date)
+				print 'This is your issue id: {0}'.format(issue_id) 
+				print 'Your return date is: {0}'.format(return_date)
 
 		else:
 			print ('user_id entered does not exist')
@@ -107,16 +107,16 @@ def allocate():																	#func to allocate a book
 	else:
 		print ('ISBN entered is not present in the database')
 		#go to line 32
-    
+	
 
 def save_allocate_to_db(comment, TableName=issue):								#func to save the new allocation data to db
-    issue_data = book(user_id=alloc_member_id,
-                        isbn=alloc_book_isbn,
-                        issue_id=issue_id,
-                        issue_date=issue_date,
-                        return_date=return_date,
-                        num_of_books=book_no)
-    issue_data.save()
+	issue_data = book(user_id=alloc_member_id,
+						isbn=alloc_book_isbn,
+						issue_id=issue_id,
+						issue_date=issue_date,
+						return_date=return_date,
+						num_of_books=book_no)
+	issue_data.save()
 
 
 def de_allocate():																#func to de-allocate a book
@@ -128,8 +128,7 @@ def de_allocate():																#func to de-allocate a book
 			book_no += 1
 			current_status = 'returned'
 
-		elif:
-			today_date < return_date:
+		elif today_date < return_date:
 			overdue_days = return_date - today_date
 			fine = 5*overdue_days
 			print "Your fine is Rs", fine
@@ -139,38 +138,38 @@ def de_allocate():																#func to de-allocate a book
 			book_no+= 1
 			print 'Thank you for choosing Python Library'
 
-def update_de_allocate_to_db():
+#def update_de_allocate_to_db():
 	#function to add returned status to book
 
 
-def remove_book():																#func to remove book from db
+def remove_book():																
 	check_isbn = raw_input('Enter the ISBN code of the book you want to remove: ')
-    
-    for check_isbn in book_isbn(1,10):
-    	#remove book action
-    	book = book.get(book_isbn == check_isbn)
-    	book.delete_instance()
+	
+	for check_isbn in book_isbn(1,10):
+		#remove book action
+		book = book.get(book_isbn == check_isbn)
+		book.delete_instance()
 
-    	print 'The book' check_isbn 'has been deleted.'
+		print 'The book',check_isbn,'has been deleted.'
 	
 
 
 
 def remove_member():															#func to remove member from db
 	rem_member_id = raw_input("Enter member's user_id : ")
-    # remove member action
-    member = member.get(user_id == rem_member_id)
-    member.delete_instance()
+	# remove member action
+	member = member.get(user_id == rem_member_id)
+	member.delete_instance()
 
-    print 'Member' rem_member_id 'has been removed.'
+	print 'Member',rem_member_id,'has been removed.'
 	
 
 functions = {'a': add_book,														#dictionary for basic operations
-             'b': add_member,
-             'c': allocate,
-             'd': de_allocate,
-             'e': remove_book,
-             'f': remove_member}
+			 'b': add_member,
+			 'c': allocate,
+			 'd': de_allocate,
+			 'e': remove_book,
+			 'f': remove_member}
 
 what_operation_user_wants = functions[value]
 
@@ -188,3 +187,6 @@ def what_operation_user_wants(user_option):										#func to get user action
 	return user_option
 
 functions[user_option]()
+
+
+what_operation_user_wants()
