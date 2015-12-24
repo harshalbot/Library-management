@@ -1,6 +1,7 @@
 import peewee
+from peewee import *
 
-db = SqliteDatabase('library.db')
+db = peewee.SqliteDatabase('library.db')
 
 class book(Model):																#Table for Books
 	title = CharField()
@@ -109,7 +110,7 @@ def allocate():																	#func to allocate a book
 		#go to line 32
 	
 
-def save_allocate_to_db(comment, TableName=issue):								#func to save the new allocation data to db
+def save_allocate_to_db(comment, TableName=issue_history):								#func to save the new allocation data to db
 	issue_data = book(user_id=alloc_member_id,
 						isbn=alloc_book_isbn,
 						issue_id=issue_id,
@@ -171,8 +172,8 @@ functions = {'a': add_book,														#dictionary for basic operations
 			 'e': remove_book,
 			 'f': remove_member}
 
-what_operation_user_wants = functions[value]
 
+user_option = None
 
 def what_operation_user_wants(user_option):										#func to get user action
 	print 'Welcome to Python LIbrary System.'
@@ -185,7 +186,8 @@ def what_operation_user_wants(user_option):										#func to get user action
 	user_option = raw_input('Enter your choice now:')
 	user_option = user_option.lower()
 	return user_option
-
+	
+what_operation_user_wants = functions[user_option]
 functions[user_option]()
 
 
