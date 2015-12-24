@@ -176,7 +176,7 @@ functions = {'a': add_book,														#dictionary for basic operations
 user_option = None
 
 def what_operation_user_wants(user_option):										#func to get user action
-	print 'Welcome to Python LIbrary System.'
+	print 'Welcome to Python Library System.'
 	print ' \n To add a book, press A.'
 	print ' \n To add a member, press B.'
 	print ' \n To allocate a book, press C.'
@@ -186,7 +186,8 @@ def what_operation_user_wants(user_option):										#func to get user action
 	user_option = raw_input('Enter your choice now:')
 	user_option = user_option.lower()
 	return user_option
-	
+
+
 what_operation_user_wants = functions[user_option]
 functions[user_option]()
 
