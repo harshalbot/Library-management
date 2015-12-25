@@ -165,15 +165,15 @@ def remove_member():															#func to remove member from db
 	print 'Member',rem_member_id,'has been removed.'
 	
 
-functions = {'1': add_book,														#dictionary for basic operations
-			 '2': add_member,
-			 '3': allocate,
-			 '4': de_allocate,
-			 '5': remove_book,
-			 '6': remove_member}
+functions = {'a': add_book,														#dictionary for basic operations
+			 'b': add_member,
+			 'c': allocate,
+			 'd': de_allocate,
+			 'e': remove_book,
+			 'f': remove_member}
 
 
-user_option = 0
+user_option = 'b'
 
 def what_operation_user_wants(user_option):										#func to get user action
 	print 'Welcome to Python Library System.'
@@ -184,12 +184,12 @@ def what_operation_user_wants(user_option):										#func to get user action
 	print ' \n To remove a book from the collection, press E.'
 	print ' \n To remove a member from the book, press F.'
 	user_option = raw_input('Enter your choice now:')
-	
+	user_option = user_option.lower()
 	return user_option
 
-functions[user_option]
 
-
+what_operation_user_wants = functions[user_option]
+functions[user_option]()
 
 if __name__ == '__main__':
 	initialize_db()
