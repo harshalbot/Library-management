@@ -165,33 +165,46 @@ def remove_member():															#func to remove member from db
 	print 'Member',rem_member_id,'has been removed.'
 	
 
-functions = {'a': add_book,														#dictionary for basic operations
-			 'b': add_member,
-			 'c': allocate,
-			 'd': de_allocate,
-			 'e': remove_book,
-			 'f': remove_member}
 
 
-user_option = 'b'
+print """							  		
+	 	Welcome to Python Library System.
+	  	a To add a book
+	  	b To add a member
+	  	c To allocate a book
+	 	d To return a book
+	 	e To remove a book from the collection
+	  	f To remove a member from the book
+	 """
 
-def what_operation_user_wants(user_option):										#func to get user action
-	print 'Welcome to Python Library System.'
-	print ' \n To add a book, press A.'
-	print ' \n To add a member, press B.'
-	print ' \n To allocate a book, press C.'
-	print ' \n To return a book, press D.'
-	print ' \n To remove a book from the collection, press E.'
-	print ' \n To remove a member from the book, press F.'
-	user_option = raw_input('Enter your choice now:')
-	user_option = user_option.lower()
-	return user_option
+user_option = raw_input('Enter your choice now:')
+user_option = user_option.lower()
 
 
-what_operation_user_wants = functions[user_option]
-functions[user_option]()
+
+
+
+if user_option == 'a':
+	add_book()
+
+elif user_option == 'b':
+	add_member()
+	
+elif user_option == 'c':
+	allocate()
+	
+elif user_option == 'd':
+	de_allocate()
+	
+elif user_option == 'e':
+	remove_book()
+	
+elif user_option == 'f':
+	remove_member()
+else:
+	print "Invalid choice"
 
 if __name__ == '__main__':
 	initialize_db()
-	what_operation_user_wants()
+	
 
